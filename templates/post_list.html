@@ -22,11 +22,6 @@
         <h3><a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a> <small>{% if obj.draft %} <span style='color:red;'>Draft </span>{% endif %}</small></h3>
         <p><small style="color: gray">{{ obj.author|title }}&nbsp&nbsp&nbsp{{ obj.publish }}</small></p>
 
-        {% if obj.image %}
-         <img src="{{ obj.image.url }}" class="img-responsive" />
-        {% endif %}
-
-
         {% autoescape off %}
         <p class="">
         {{ obj.content|truncatewords_html:20 }}
