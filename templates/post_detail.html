@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+
+{% load urlify %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<div class="col-sm-8 col-sm-offset-1 blog-main">
+<div class="page-header">
+  <h2>{{ instance.title }}  <small>{% if instance.draft %} <span style='color:red;'>草稿</span>{% endif %}</small></h2>
+</div>
+
+<p><small style="color: gray">{{ instance.author|title }}&nbsp&nbsp&nbsp{{ instance.publish }}&nbsp&nbsp&nbsp阅读需{{ instance.read_time }}分钟</small></p>
+
+<div class="post-detail-item">
+{% autoescape off %} 
+<p><br  /></p>
+{{ instance.content }}<br /><br />
+
+{% endautoescape %}
+
+</div>
+
+
+<!-- <a href="{% url 'posts:update' instance.slug %}" class="btn btn-primary" role="button">Update</a>
+<a href="{% url 'posts:delete' instance.slug %}" class="btn btn-primary" role="button">Delete</a> -->
+
+<hr />
+</div>
+
+
+<div class="comment col-sm-8 col-sm-offset-1">
+	<p class="lead">评论</p>
+	{% if request.user.is_authenticated %}
+	<form method="POST", action="">
+	{% csrf_token %}
+	{{ comment_form|crispy }}
+	 <input type="submit" value="发表" >
+	</form>
+	{% else %}
+	<p>登录后评论</p>
+	<a href="{% url 'accounts:login' %}">登录</a>
+	{% endif %}
+	<hr />
+	{% for comment in comments %}<hr />
+	
+	<blockquote>
+	<p>{{ comment.content }}</p>
+	<footer>{{ comment.user }} | {{ comment.timestamp|timesince }} ago
+	{% if comment.children.count > 0 %} <br />{{ comment.children.count }} comments{% endif %}<br />
+	<a class="comment-reply-btn" href="#">Reply</a>
+	<a href="{{ comment.get_absolute_url }}">Thread</a>
+	</footer>
+	<div class="comment-reply" >
+		{% for child_comment in comment.children %}
+		<blockquote>
+		<p>{{ child_comment.content }}</p>
+		<footer>{{ child_comment.user }} | {{ child_comment.timestamp|timesince }} ago</footer>
+		</blockquote>
+		{% endfor %}
+		
+		<form method="POST", action="">
+		{% csrf_token %}
+		{{ comment_form|crispy }}
+		<input type="hidden" name="parent_id" value="{{ comment.id }}" />
+		<input type="submit" value="Reply" />
+		</form>
+	</div>
+	</blockquote>
+
+	{% endfor %}
+	
+</div>
+{% endblock content %}
+
+
+
+
