@@ -28,7 +28,7 @@
   <span class="divider"></span>
   <div class="postend">
     
-    <p>如果你喜欢这篇文章，分享给好友吧，分享到<a href="#" target="blank" title="Tweet this">微博</a><br />
+    <p>如果你喜欢这篇文章，分享给好友吧，分享到<a href="http://weibo.com">微博</a><br />
     <a href="/">点这里</a>，查看我的全部文章</p>
   </div>
 </section>
@@ -38,7 +38,7 @@
   <ul style="padding-left: 0px">
     <li class="older">
     {% if previous %}
-                <a href="{{ previous.get_absolute_url }}">
+                <a href="{{ previous.get_absolute_url }}" style="text-decoration: none;">
           <div class="content">
             <div class="postTitles">
               <div class="label">上一篇</div>
@@ -51,7 +51,7 @@
         }
     <li class="newer">
     {% if next %}
-                <a href="{{ next.get_absolute_url }}">
+                <a href="{{ next.get_absolute_url }}" style="text-decoration: none;">
           <div class="content">
             <div class="postTitles">
               <div class="label">下一篇</div>

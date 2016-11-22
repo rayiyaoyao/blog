@@ -23,7 +23,7 @@
 <section class="posts center">
   {% for obj in object_list %}
   <div>
-    <a class="post" href="{{ obj.get_absolute_url }}">
+    <a class="post" href="{{ obj.get_absolute_url }}" style="text-decoration: none">
       <div class="content">
         <h1>{{ obj.title }}<small>{% if obj.draft %} <span style='color:red;'>Draft </span>{% endif %}</small></h1>
         <div class="meta">

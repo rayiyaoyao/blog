@@ -9,7 +9,8 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="Rayiyaoyao">
-    <meta property="wb:webmaster" content="ccbe162dcca75ffe" />
+ 
+
 
     <!-- Bootstrap core CSS -->
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -17,22 +18,14 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="http://getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
+  	<!-- Custom styles for this template -->
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+  
 
-    <!-- font-awesome CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-     <script src="http://timothyachumba.com/assets/js/libs/jquery.js"></script>  <script src="http://timothyachumba.com/assets/js/libs/modernizr.js"></script>  <script src="http://timothyachumba.com/assets/js/main.js"></script>
-  <script src="//use.typekit.net/xfv3uia.js"></script>
-  <script>try{Typekit.load();}catch(e){}</script>
 
     <link rel="icon" href="{% static 'images/favicon.ico' %}">
+
 
     <title>{% block title %}{{ title }}{% endblock title %}</title>
 
@@ -60,11 +53,10 @@
 
 <!-- Latest compiled and minified JavaScript -->
 
-<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"></script>
+<script src="{% static 'js/jquery.js' %}"></script>
+  <script src="{% static 'js/modernizr.js' %}"></script>  
+  <script src="{% static 'js/main.js' %}"></script>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -73,9 +65,7 @@ $(document).ready(function(){
 		var markedContent = marked(content)
 		$(this).html(markedContent)
 		})
-	$(".post-detail-item img").each(function(){
-		$(this).addClass("img-responsive");
-		})
+
 
 	// preview_title
 	var titleInput = $("#id_title");
@@ -115,15 +105,8 @@ $(document).ready(function(){
 
 })
 
-</script>
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
 </body>
 
 
