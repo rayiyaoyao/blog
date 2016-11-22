@@ -16,7 +16,7 @@ from .utils import get_read_time,count_words
 
 
 # Create your models here.
-
+# test 
 
 class PostManager(models.Manager):
 	def active(self, *args, **kwargs):
@@ -44,6 +44,7 @@ class Post(models.Model):
 	read_time = models.IntegerField(default=0)
 	updated = models.DateTimeField(auto_now = True, auto_now_add = False)
 	timestamp = models.DateTimeField(auto_now = False, auto_now_add = True)
+	test = models.BooleanField(default= False)
 
 	objects = PostManager()
 

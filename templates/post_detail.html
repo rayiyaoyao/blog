@@ -10,7 +10,7 @@
 <section class="container post">
   <article>
     <h1>{{ instance.title }}
-    	<small>{% if instance.draft %} <span style='color:red;'>草稿</span>{% endif %}</small>
+    	{% if instance.draft %}<small> <span style='color:red;'>草稿</span></small>{% endif %}
     </h1>
     <div class="meta">
       <span class="date">
@@ -19,7 +19,7 @@
         {{ instance.words_count }}字
       </span>
       <span class="readingTime">
-        {{ inctance.read_time }}分钟      </span>
+        {{ instance.read_time }}分钟      </span>
     </div>
     	{% autoescape off %} 
 		{{ instance.content }}
