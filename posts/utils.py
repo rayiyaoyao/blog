@@ -8,7 +8,7 @@ def count_words(html_string):
 	word_string = strip_tags(html_string)
 	matching_words = re.findall(r'\w+', word_string)
 	count = len(matching_words)
-	return count
+	return int(count)
 
 
 def get_read_time(html_string):

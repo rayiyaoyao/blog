@@ -12,7 +12,7 @@ from django.utils.text import slugify
 from markdown_deux import markdown
 
 from comments.models import Comment
-from .utils import get_read_time
+from .utils import get_read_time,count_words
 
 
 # Create your models here.
@@ -40,6 +40,7 @@ class Post(models.Model):
 	content = models.TextField()
 	draft = models.BooleanField(default= False)
 	publish = models.DateField(auto_now = False, auto_now_add = False, )
+	words_count = models.IntegerField(default=0)
 	read_time = models.IntegerField(default=0)
 	updated = models.DateTimeField(auto_now = True, auto_now_add = False)
 	timestamp = models.DateTimeField(auto_now = False, auto_now_add = True)
@@ -99,6 +100,7 @@ def pre_save_post_receiver(sender, instance, *args, **kwargs):
 
     if instance.content:
     	html_string = instance.get_markdown()
+    	instance.words_count = count_words(html_string)
     	instance.read_time = get_read_time(html_string)
 
 

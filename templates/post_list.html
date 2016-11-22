@@ -4,82 +4,73 @@
 {% block content %}
 
 
+<p><br /></p>
+
+<section class="container blog center">
 
 
-<div class="container col-sm-10 col-sm-offset-1">
+  <div class="intro">
+    <h1>我是Ray，这里是我的小站</h1>
+      <p>
+        偶尔捣鼓代码，做做PS，写写文章，就有了这个小站<br /> 闲时会游泳、骑行或摄影，爱运动、爱设计、爱折腾<br />
+        也可以联系我的<a href="http://weibo.com/5605009888/">微博</a>或者<a href="https://www.zhihu.com/people/rayiyaoyao">知乎</a>，讨论互联网二三事或者女性权利
+      </p>
+  </div>
+    <span class="divider"></span>
+</section>
 
-      <div class="row">
 
-        <div class="col-sm-8 ">
-{% for obj in object_list %}
-          <div class="blog-post">
- 
-    
+<section class="posts center">
+  {% for obj in object_list %}
+  <div>
+    <a class="post" href="{{ obj.get_absolute_url }}">
+      <div class="content">
+        <h1>{{ obj.title }}<small>{% if obj.draft %} <span style='color:red;'>Draft </span>{% endif %}</small></h1>
+        <div class="meta">
+          <span class="date">
+            {{ obj.publish }}            </span>
+          <span class="wordCount">
+            {{ obj.words_count }}字          </span>
+          <span class="readingTime">
+            {{ obj.read_time }}分钟           </span>
+        </div>
+     </div>
+      <div class="color left"></div>
+      <div class="color right"></div>
+    </a>
+    </div>
+    <p><br /></p>
 
-   
-      <div class="caption post-detail-item">
-      <a href="{{ obj.get_absolute_url }}">
-        <h3><a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a> <small>{% if obj.draft %} <span style='color:red;'>Draft </span>{% endif %}</small></h3>
-        <p><small style="color: gray">{{ obj.author|title }}&nbsp&nbsp&nbsp{{ obj.publish }}</small></p>
-
-        {% autoescape off %}
-        <p class="">
-        {{ obj.content|truncatewords_html:20 }}
-        </p>
-        {% endautoescape %}
-        </a>
-
-        <hr />
+  {% endfor %}   
+</section>
+  
         
 
-    </div>
-
-    </div>
-
-{% endfor %}
-    </div>
-    <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
-    <p><br /></p>
-    <p><br /></p>
-          <div class="sidebar-module sidebar-module-inset">
-            <h4>关于我</h4>
-            <p>R酱酱 <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-          </div>
-          <div class="sidebar-module">
-            <h4>金融科普文章</h4>
-            <ol class="list-unstyled">
-            {% for obj in object_list %}
-              <li><a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a></li>
-            {% endfor %}
-            </ol>
-          </div>
-          <div class="sidebar-module">
-            <h4>了解更多</h4>
-            <ol class="list-unstyled">
-              <li><a href="#">GitHub</a></li>
-              <li><a href="#">Twitter</a></li>
-              <li><a href="#">Facebook</a></li>
-            </ol>
-          </div>
-        </div><!-- /.blog-sidebar -->
-    </div>
-    <p><br /></p>
+ <section class="container thanks center">
+    <span class="divider"></span>
+    <p>Thanks for stopping by, I really appreciate it.<br />
+    Copyright 2016 © Rayiyaoyao All rights reserved</p>  
+</section>        
+        
 
 
 
 
 
 
+
+
+<!-- 
 <div class="col-sm-8">
 <nav aria-label="...">
   <ul class="pager">
-    <span class="step-links" />
-    {% if object_list.has_previous %}
+    <!-- <span class="step-links" /> -->
+    <!-- {% if object_list.has_previous %}
     <li><a href="?page={{ object_list.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">上一页</a></li>
     {% endif %}
-<!--     <span class="current">
+    <span class="current">
     第{{ object_list.number }}页，共{{ object_list.paginator.num_pages }}页
-    </span> -->
+    </span>
     {% if object_list.has_next %}
     <li><a href="?page={{ object_list.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">下一页</a></li>
     {% endif %}
@@ -87,8 +78,8 @@
 
 
 
-</nav>
-</div>
+</nav>  -->
+
 
 
 

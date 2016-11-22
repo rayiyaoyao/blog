@@ -30,7 +30,7 @@ def post_list(request):
 			# Q(author__name__icontains=query)
 			).distinct()
 		
-	paginator = Paginator(queryset_list, 5)
+	paginator = Paginator(queryset_list, 10)
 	page = request.GET.get('page')
 	try:
 		queryset = paginator.page(page)
@@ -44,7 +44,7 @@ def post_list(request):
 
 
 	context = {
-		"title": "R酱的小站",
+		"title": "Ray的小站",
 		"object_list": queryset,
 	}
 	return render(request, "post_list.html", context)
@@ -85,9 +85,24 @@ def post_create(request):
 
 def post_detail(request, slug = None): # retrieve
 	# instance = Post.objects.get(id = 1) #not include exception
-	instance = get_object_or_404(Post, slug=slug)
-	share_string = quote_plus(instance.slug)
+	instance = get_object_or_404(Post, pk=int(slug))
 
+	blog_list = []
+	qs = Post.objects.values_list('id', flat=True).order_by('id')
+	blog_list = list(qs)
+	id_index = blog_list.index(int(slug))
+	if len(blog_list)>1:
+		if id_index == 0 :
+			previous_obj = None
+			next_obj = get_object_or_404(Post, pk=blog_list[id_index+1])
+		elif id_index == len(blog_list)-1 :
+			previous_obj = get_object_or_404(Post, pk=blog_list[id_index-1])
+			next_obj =  None
+		else:
+			previous_obj = get_object_or_404(Post, pk=blog_list[id_index-1]) 
+			next_obj = get_object_or_404(Post, pk=blog_list[id_index+1]) 
+
+	share_string = quote_plus(instance.slug)
 
 	initial_data = {
 			"content_type": instance.get_content_type,
@@ -125,6 +140,8 @@ def post_detail(request, slug = None): # retrieve
 	context = {
 		"title": instance.title,
 		"instance": instance,
+		"previous": previous_obj,
+		"next": next_obj,
 		"share_string": share_string,
 		"comments": comments,
 		"comment_form": form,
